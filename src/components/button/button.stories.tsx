@@ -13,11 +13,15 @@ export const standard = () => (
         <div style={{ marginBottom: '2em' }}>
             <Button>Standaard button</Button>
             <Button primary>primary button</Button>
-            <Button secondary>primary button</Button>
+            <Button secondary>secondary button</Button>
+            <Button tertiary>tertiary button</Button>
             <Button primary isDisabled>
                 Disabled
             </Button>
             <Button secondary isDisabled>
+                Disabled
+            </Button>
+            <Button tertiary isDisabled>
                 Disabled
             </Button>
             <Button isLink>anchor button</Button>
@@ -31,6 +35,9 @@ export const standard = () => (
             <Button size={SIZES.LARGE} secondary>
                 Large secondary button
             </Button>
+            <Button size={SIZES.LARGE} tertiary>
+                Large tertiary button
+            </Button>
             <Button size={SIZES.LARGE} isDisabled>
                 Large disabled button
             </Button>
@@ -43,6 +50,9 @@ export const standard = () => (
             </Button>
             <Button size={SIZES.SMALL} secondary>
                 Small secondary button
+            </Button>
+            <Button size={SIZES.SMALL} tertiary>
+                Small tertiary button
             </Button>
             <Button size={SIZES.SMALL} isDisabled>
                 Small disabled button

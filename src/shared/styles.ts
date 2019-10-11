@@ -11,9 +11,9 @@ export const background = {
 
 export const color = {
     // Palette
-    primary: '#FF4785', // coral
-    secondary: '#1EA7FD', // ocean
-    tertiary: '#DDDDDD',
+    primary: '#ffd428', // yellow
+    secondary: '#2853ff', // ocean
+    tertiary: '#ff6928',
 
     orange: '#FC521F',
     gold: '#FFAE00',
@@ -55,7 +55,8 @@ export const spacing = {
 
 export const typography = {
     type: {
-        primary: '"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+        primary: '"Alegreya", "Helvetica Neue", Helvetica, Arial, serif',
+        heading: 'Montserrat, sans-serif',
         code: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
     },
     weight: {

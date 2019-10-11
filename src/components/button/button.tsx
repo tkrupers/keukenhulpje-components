@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled/macro';
-import { darken, rgba } from 'polished';
+import { darken } from 'polished';
 import { color, typography } from '../../shared/styles';
 import { easing } from '../../shared/animation';
 
@@ -26,6 +26,7 @@ export interface ButtonProps {
     isLoading?: boolean;
     primary?: boolean;
     secondary?: boolean;
+    tertiary?: boolean;
     size?: SIZES;
     isDisabled?: boolean;
     disabled?: boolean;
@@ -40,7 +41,7 @@ const StyledButton = styled.button<ButtonProps>`
 	cursor: pointer;
 	display: inline-block;
 	overflow: hidden;
-	padding: ${props => (props.size === SIZES.SMALL ? '8px 16px' : '13px 20px')};
+	padding: ${props => (props.size === SIZES.SMALL ? '12px 24px' : '18px 36px')};
 	position: relative;
 	text-align: center;
 	text-decoration: none;
@@ -51,7 +52,8 @@ const StyledButton = styled.button<ButtonProps>`
 	user-select: none;
 	opacity: 1;
 	margin: 0;
-	background: transparent;
+    background: transparent;
+    font-family: ${typography.type.heading};
 
 	font-size: ${props => (props.size === SIZES.SMALL ? typography.size.s1 : typography.size.s2)}px;
 	font-weight: ${typography.weight.extrabold};
@@ -60,18 +62,15 @@ const StyledButton = styled.button<ButtonProps>`
 	${props =>
         !props.isLoading &&
         `
-          &:hover {
-            transform: translate3d(0, -2px, 0);
-            box-shadow: rgba(0, 0, 0, 0.2) 0 2px 6px 0;
-          }
+        &:hover {
+            background: ${darken(0.05, '#fff')}
+        }
           &:active {
-            transform: translate3d(0, 0, 0);
+            outline: 0;
+            background: ${darken(0.2, '#fff')}
           }
           &:focus {
-            box-shadow: ${rgba(color.primary, 0.4)} 0 1px 9px 2px;
-          }
-          &:focus:hover {
-            box-shadow: ${rgba(color.primary, 0.2)} 0 8px 18px 0px;
+            outline: 0;
           }
         `} 
         
@@ -88,23 +87,49 @@ const StyledButton = styled.button<ButtonProps>`
         props.primary &&
         `
             background: ${color.primary};
-            color: ${color.lightest};
+            color: ${color.darkest};
             ${!props.isLoading &&
                 `
                 &:hover {
                     background: ${darken(0.05, color.primary)};
                 }
                 &:active {
-                    box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 3em inset;
-                }
-                &:focus {
-                    box-shadow: ${rgba(color.primary, 0.4)} 0 1px 9px 2px;
-                }
-                &:focus:hover {
-                    box-shadow: ${rgba(color.primary, 0.2)} 0 8px 18px 0px;
+                     background: ${darken(0.2, color.primary)};
                 }
                 `}
             `}
+
+    ${props =>
+        props.secondary &&
+        `
+            background: ${color.secondary};
+            color: ${color.lightest};
+            ${!props.isLoading &&
+                `
+                &:hover {
+                background: ${darken(0.05, color.secondary)};
+                }
+                &:active {
+                 background: ${darken(0.2, color.secondary)};
+                }
+            `}
+        `}
+
+    ${props =>
+        props.tertiary &&
+        `
+            background: ${color.tertiary};
+            color: ${color.lightest};
+            ${!props.isLoading &&
+                `
+                &:hover {
+                background: ${darken(0.05, color.tertiary)};
+                }
+                &:active {
+                 background: ${darken(0.2, color.tertiary)};
+                }
+            `}
+        `}
 
     ${props =>
         props.isLoading &&
@@ -124,28 +149,6 @@ const StyledButton = styled.button<ButtonProps>`
             &:hover {
                 transform: none;
             }
-        `}
-
-    ${props =>
-        props.secondary &&
-        `
-            background: ${color.secondary};
-            color: ${color.lightest};
-            ${!props.isLoading &&
-                `
-                &:hover {
-                background: ${darken(0.05, color.secondary)};
-                }
-                &:active {
-                box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 3em inset;
-                }
-                &:focus {
-                box-shadow: ${rgba(color.secondary, 0.4)} 0 1px 9px 2px;
-                }
-                &:focus:hover {
-                box-shadow: ${rgba(color.secondary, 0.2)} 0 8px 18px 0px;
-                }
-            `}
         `}
                     
     ${Text} {
