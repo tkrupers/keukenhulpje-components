@@ -37,14 +37,12 @@ export const standard = () => (
             <NavBar fullWidth primary>
                 Full width navbar with Buttons
                 <NavBarContent>
-                    <NavLink>Regular link</NavLink>
+                    <NavLink>Nav link</NavLink>
                     <NavLink isDisabled>Not clickable</NavLink>
                     <NavLink isButton primary>
                         Register
                     </NavLink>
-                    <NavLink isButton tertiary>
-                        Log in
-                    </NavLink>
+                    <NavLink small>small link</NavLink>
                 </NavBarContent>
             </NavBar>
         </div>

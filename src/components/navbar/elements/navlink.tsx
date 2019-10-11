@@ -1,25 +1,31 @@
-import React from 'react';
+import React, { BlockquoteHTMLAttributes } from 'react';
 import styled from '@emotion/styled/macro';
 import { darken } from 'polished';
-import { color } from '../../../shared/styles';
+import { color, typography } from '../../../shared/styles';
 import { Button, ButtonProps } from '../../button/button';
+import underline from './underline.svg';
 
 interface NavLinkProps extends ButtonProps {
     isDisabled?: boolean;
     primary?: boolean;
     isButton?: boolean;
+    small?: boolean;
     children?: any;
 }
 
 export const NavLinkStyled = styled.a<NavLinkProps>`
     display: inline-flex;
     margin-right: 1em;
+    font-size: ${typography.size.m2}px;
     cursor: pointer;
 
     ${props =>
         !props.isDisabled &&
         `
         &:hover {
+            background: url(${underline});
+            background-position: 0 62px;
+            background-size: 144px 29px;
             color: ${darken(0.05, color.lightest)}
         }
     `}
@@ -32,6 +38,16 @@ export const NavLinkStyled = styled.a<NavLinkProps>`
 
         &:hover {
             color: ${darken(0.05, color.primary)}
+        }
+    `}
+
+    ${props =>
+        props.small &&
+        `
+        font-size: ${typography.size.s3}px;
+
+        &:hover {
+            background: none;
         }
     `}
 
