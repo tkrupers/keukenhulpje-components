@@ -20,7 +20,7 @@
     "start": "start-storybook -p 6006",
     "build": "npm run lint && npm run build-lib && build-storybook",
     "build-lib": "tsc && npm run copy-css-to-lib && npm run copy-svg-to-lib && npm run copy-png-to-lib && npm run copy-woff2-to-lib",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
@@ -53,6 +53,9 @@
     "@storybook/addon-storysource": "^5.2.3",
     "@storybook/addons": "^5.2.3",
     "@storybook/react": "^5.2.3",
+    "@testing-library/jest-dom": "^4.1.2",
+    "@testing-library/react": "^9.3.0",
+    "@types/react-test-renderer": "^16.9.0",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
     "@typescript-eslint/parser": "^2.3.3",
     "awesome-typescript-loader": "^5.2.1",
@@ -62,7 +65,9 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "jest": "^24.9.0",
+    "jest-emotion": "^10.0.17",
     "prettier": "^1.18.2",
+    "react-test-renderer": "^16.10.2",
     "ts-jest": "^24.1.0"
   }
 }
