@@ -79,7 +79,7 @@ export const typography = {
     },
 };
 
-export const breakpoint = 600;
+export const breakpoint = 400;
 export const pageMargin = 5.55555;
 
 export const pageMargins = css`

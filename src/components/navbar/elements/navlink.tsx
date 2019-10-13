@@ -1,7 +1,7 @@
-import React, { BlockquoteHTMLAttributes } from 'react';
+import React from 'react';
 import styled from '@emotion/styled/macro';
 import { darken } from 'polished';
-import { color, typography } from '../../../shared/styles';
+import { color, typography, breakpoint } from '../../../shared/styles';
 import { Button, ButtonProps } from '../../button/button';
 import underline from './underline.svg';
 
@@ -60,10 +60,18 @@ export const NavLinkStyled = styled.a<NavLinkProps>`
           transform: none;
         }
     `}
+
+    @media (max-width: ${breakpoint * 2}px) {
+        margin-bottom: 8px;
+    }
 `;
 
 const ButtonStyled = styled(Button)`
     margin-right: 1em;
+
+    @media (max-width: ${breakpoint * 2}px) {
+        margin-bottom: 8px;
+    }
 `;
 
 export const NavLink: React.FC<NavLinkProps> = ({ isButton, children, ...rest }) => {
