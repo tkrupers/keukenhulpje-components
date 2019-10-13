@@ -5,7 +5,7 @@ import { Link } from '../link/link';
 import { Icon } from '../icon/icon';
 
 export default {
-    title: 'Design system|NavBar',
+    title: 'Components|NavBar',
     component: NavBar,
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Heading } from './heading';
 
 export default {
-    title: 'Design system|Heading',
+    title: 'Components|Heading',
     component: Heading,
 };
 

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styled from '@emotion/styled/macro';
+import { useSpring, animated, config } from 'react-spring';
 import { color, typography, breakpoint } from '../../shared/styles';
 import { Icon } from '../icon/icon';
 import { NavLink } from './elements/navlink';
@@ -18,15 +19,14 @@ type Props = {
     children?: any;
 };
 
-const StyledNavbar = styled.nav<Props>`
+const StyledNavbar = styled(animated.nav)`
     display: inline-flex;
     position: relative;
     height: 80px;
     padding-left: 1em;
     padding-right: 1em;
-    border: 0;
-    border-top: 1px solid #dadce0;
-    border-bottom: 1px solid #dadce0;
+    border-top: 1px solid ${color.medium};
+    border-bottom: 1px solid ${color.medium};
     border-radius: 0;
     align-items: center;
     justify-content: space-evenly;
@@ -34,25 +34,25 @@ const StyledNavbar = styled.nav<Props>`
     box-sizing: border-box;
     font-family: ${typography.type.heading};
 
-    ${props =>
+    ${(props: Props) =>
         props.primary &&
         `
         background: ${color.secondary};
         color: ${color.lightest};
     `}
-    ${props =>
+    ${(props: Props) =>
         props.secondary &&
         `
         background: ${color.light};
         color: ${color.darkest};
     `};
 
-    ${props =>
+    ${(props: Props) =>
         props.fullWidth &&
         `
         display: flex;
-        box-shadow: 0 4px 4px ${color.medium};
         width: 100%;
+        border: 0;
         margin-bottom: 1em;
         justify-content: space-between;
 
@@ -64,7 +64,7 @@ const StyledNavbar = styled.nav<Props>`
         }
     `}
 
-    ${props =>
+    ${(props: Props) =>
         props.fixed &&
         `
         position: fixed;
@@ -76,20 +76,74 @@ const StyledNavbar = styled.nav<Props>`
     `}
 `;
 
-export const NavBar: React.FC<Props> = ({ children, brand, fullWidth, ...rest }) => {
+export const NavBar: React.FC<Props> = ({ children, brand, fullWidth, primary, secondary, ...rest }) => {
     const [showMenu, setShowMenu] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const barAnimation = useSpring({
+        from: { transform: 'translate3d(0, -100%, 0)' },
+        transform: 'translate3d(0, 0, 0)',
+        config: config.stiff,
+    });
+
+    const isMobile = windowWidth <= breakpoint * 2;
+
+    const contentAnimation = useSpring({
+        from: { transform: isMobile ? 'translate3d(-100%,0,0)' : 'translate3d(0,20px,0)', height: 0, opacity: 0 },
+        transform: isMobile ? (showMenu ? 'translate3d(0,0,0)' : 'translate3d(-100%,0,0)') : 'translate3d(0,0,0)',
+        marginTop: isMobile ? '80px' : 0,
+        width: '100%',
+        opacity: isMobile ? (showMenu ? 1 : 0) : 1,
+        height: isMobile ? (showMenu ? 'auto' : 0) : 'auto',
+        delay: isMobile ? 0 : 600,
+        config: config.wobbly,
+    });
+
+    const heightAnimation = useSpring({
+        height: isMobile ? (showMenu ? 'auto' : 0) : 'auto',
+        flexDirection: isMobile ? 'column' : 'row',
+    });
+
+    const toggleNavBar = useCallback(() => {
+        setShowMenu(!showMenu);
+    }, [showMenu]);
+
+    const handleWindowResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+
+    useEffect(() => {
+        (window as any).addEventListener('resize', handleWindowResize);
+        console.log(windowWidth, breakpoint * 2);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
+
     return (
-        <StyledNavbar fullWidth={fullWidth} {...rest}>
+        <StyledNavbar
+            style={fullWidth ? barAnimation : {}}
+            fullWidth={fullWidth}
+            showMenu={showMenu}
+            primary={primary}
+            secondary={secondary}
+            {...rest}
+        >
             <NavBarContainer>
                 {fullWidth && (
-                    <NavBarToggle onClick={() => setShowMenu(!showMenu)}>
-                        <Icon icon="menu" aria-title="menu" aria-description="toggle menu" />
+                    <NavBarToggle onClick={toggleNavBar}>
+                        <Icon icon="menu" />
                     </NavBarToggle>
                 )}
                 {brand && <NavBarBrand>{brand}</NavBarBrand>}
-                <NavBarContent showMenu={showMenu} fullWidth={fullWidth}>
-                    {children}
-                </NavBarContent>
+                {fullWidth ? (
+                    <animated.div style={contentAnimation}>
+                        <NavBarContent style={heightAnimation} showMenu={showMenu} fullWidth={fullWidth}>
+                            {children}
+                        </NavBarContent>
+                    </animated.div>
+                ) : (
+                    <NavBarContent fullWidth={fullWidth}>{children}</NavBarContent>
+                )}
             </NavBarContainer>
         </StyledNavbar>
     );

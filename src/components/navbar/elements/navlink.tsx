@@ -15,7 +15,6 @@ interface NavLinkProps extends ButtonProps {
 
 export const NavLinkStyled = styled.a<NavLinkProps>`
     display: inline-flex;
-    margin-right: 1em;
     font-size: ${typography.size.m2}px;
     cursor: pointer;
 
@@ -64,10 +63,16 @@ export const NavLinkStyled = styled.a<NavLinkProps>`
     @media (max-width: ${breakpoint * 2}px) {
         margin-bottom: 8px;
     }
+
+    @media (min-width: ${breakpoint * 2}px) {
+        margin-right: 1em;
+    }
 `;
 
 const ButtonStyled = styled(Button)`
-    margin-right: 1em;
+    @media (min-width: ${breakpoint * 2}px) {
+        margin-right: 1em;
+    }
 
     @media (max-width: ${breakpoint * 2}px) {
         margin-bottom: 8px;
