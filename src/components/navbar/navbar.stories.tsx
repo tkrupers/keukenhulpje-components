@@ -1,8 +1,8 @@
 import React from 'react';
-import { NavBar, NavBarContent } from './navbar';
-import { NavLink } from './elements/navlink';
+import { NavBar, NavLink } from './navbar';
 
 import { Link } from '../link/link';
+import { Icon } from '../icon/icon';
 
 export default {
     title: 'Design system|NavBar',
@@ -34,16 +34,21 @@ export const standard = () => (
         </div>
 
         <div style={{ marginBottom: '3em' }}>
-            <NavBar fullWidth primary>
-                Full width navbar with Buttons
-                <NavBarContent>
-                    <NavLink>Nav link</NavLink>
-                    <NavLink isDisabled>Not clickable</NavLink>
-                    <NavLink isButton primary>
-                        Register
-                    </NavLink>
-                    <NavLink small>small link</NavLink>
-                </NavBarContent>
+            <NavBar
+                fullWidth
+                primary
+                brand={
+                    <>
+                        <Icon icon="user" /> Mooie titel
+                    </>
+                }
+            >
+                <NavLink>Nav link</NavLink>
+                <NavLink isDisabled>Not clickable</NavLink>
+                <NavLink isButton primary>
+                    Register
+                </NavLink>
+                <NavLink small>small link</NavLink>
             </NavBar>
         </div>
     </div>
