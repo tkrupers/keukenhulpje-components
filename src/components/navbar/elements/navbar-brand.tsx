@@ -1,16 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled/macro';
-import { breakpoint } from '../../../shared/styles';
+import { spacing } from '../../../shared/styles';
 
 export const NavBarBrand = styled.div`
-    min-width: 200px;
+    display: inline-block;
+    padding-top: ${spacing.padding.small}px;
+    padding-bottom: ${spacing.padding.small}px;
+    line-height: inherit;
+    white-space: nowrap;
     margin: auto;
-    text-align: center;
-
-    @media (max-width: ${breakpoint * 2}px) {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -10px 0 0 -100px;
-    }
 `;

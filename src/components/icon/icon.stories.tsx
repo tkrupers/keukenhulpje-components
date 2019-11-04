@@ -3,7 +3,7 @@ import { Icon } from './icon';
 import { icons } from '../../shared/icons';
 
 export default {
-    title: 'Design System|Icon',
+    title: 'Components|Icon',
     parameters: {
         component: Icon,
     },

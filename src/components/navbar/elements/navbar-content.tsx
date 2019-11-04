@@ -1,12 +1,21 @@
 import React from 'react';
 import styled from '@emotion/styled/macro';
-import { breakpoint } from '../../../shared/styles';
 
-export const NavBarContent = styled.div<{ fullWidth?: boolean; showMenu?: boolean }>`
+import { breakpoint, spacing } from '../../../shared/styles';
+import { animated } from 'react-spring';
+
+type Props = { fullWidth?: boolean; showMenu?: boolean };
+
+export const NavBarContent: React.FC<Props> = styled(animated.div)`
+
     display: flex;
     align-items: center;
     background: inherit;
     box-sizing: border-box;
+    overflow: hidden;
+    width: 100%;
+    justify-content: space-evenly;
+    will-change: transform, opacity, height;
 
     ${props =>
         props.fullWidth &&
@@ -15,12 +24,8 @@ export const NavBarContent = styled.div<{ fullWidth?: boolean; showMenu?: boolea
         width: 100%;
 
         @media (max-width: ${breakpoint * 2}px) {
-            transform: translate(0, 78px);
-            display: ${!props.showMenu ? 'none' : 'flex'};
-            align-items: flex-start;
-            flex-direction: column;
-            padding-left: 1em;
-            padding-bottom: 1em;
+            margin: ${spacing.padding.medium}px 0;
+            padding-bottom: 2em;
         }
     `}
 `;

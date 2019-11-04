@@ -1,5 +1,9 @@
 {
   "name": "keukenhulpje-components",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "description": "Component library keukenhulpje",
+  "repository": "https://github.com/tkrupers/keukenhulpje-components.git",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,10 +18,12 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
+    "react-spring": "^8.0.27",
     "typescript": "3.6.4"
   },
   "scripts": {
     "start": "start-storybook -p 6006",
+    "build:prod": "BABEL_ENV=production babel src -d dist",
     "build": "npm run lint && npm run build-lib && build-storybook",
     "build-lib": "tsc && npm run copy-css-to-lib && npm run copy-svg-to-lib && npm run copy-png-to-lib && npm run copy-woff2-to-lib",
     "test": "jest",
@@ -29,6 +35,11 @@
     "copy-woff2-to-lib": "cpx \"./src/**/*.woff2\" ./build/lib",
     "copy-svg-to-lib": "cpx \"./src/**/*.svg\" ./build/lib",
     "copy-png-to-lib": "cpx \"./src/**/*.png\" ./build/lib"
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "@storybook/addon-actions": "^5.2.3",
@@ -58,6 +70,7 @@
     "@types/react-test-renderer": "^16.9.0",
     "@typescript-eslint/eslint-plugin": "^2.3.3",
     "@typescript-eslint/parser": "^2.3.3",
+    "auto": "^7.12.5",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "eslint": "^6.5.1",
