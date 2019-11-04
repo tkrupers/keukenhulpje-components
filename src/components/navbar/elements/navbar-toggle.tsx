@@ -6,11 +6,8 @@ export const NavBarToggle = styled.div`
     display: none;
 
     @media (max-width: ${breakpoint * 2}px) {
-        display: flex;
-        position: absolute;
-        top: 50%;
-        margin-top: -10px;
+        display: inline-block;
+        margin: auto;
         cursor: pointer;
-        left: 1em;
     }
 `;

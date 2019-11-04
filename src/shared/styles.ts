@@ -55,7 +55,7 @@ export const spacing = {
 
 export const typography = {
     type: {
-        primary: '"Alegreya", "Helvetica Neue", Helvetica, Arial, serif',
+        primary: '"Hind", "Helvetica Neue", Helvetica, Arial, serif',
         heading: 'Montserrat, sans-serif',
         code: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
     },

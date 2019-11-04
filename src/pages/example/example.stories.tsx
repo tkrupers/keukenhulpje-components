@@ -13,7 +13,7 @@ export default {
 
 export const examplePage = () => (
     <div style={{ background: color.lighter }}>
-        <Panel secondary showCurves>
+        <Panel secondary>
             <NavBar
                 fullWidth
                 primary
@@ -41,7 +41,13 @@ export const examplePage = () => (
             </div>
         </Panel>
 
-        <Panel showCurves tertiary>
+        <Panel>
+            <Heading level={1} align="center">
+                Wow
+            </Heading>
+        </Panel>
+
+        <Panel tertiary style={{ height: '300px' }}>
             <Text align="center">Nieuwe site online!</Text>
         </Panel>
 

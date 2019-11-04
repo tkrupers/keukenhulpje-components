@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled/macro';
 import { darken } from 'polished';
-import { color, typography } from '../../shared/styles';
+import { color, typography, spacing } from '../../shared/styles';
 import { easing } from '../../shared/animation';
 
 export enum SIZES {
@@ -37,7 +37,7 @@ export interface ButtonProps {
 
 const StyledButton = styled.button<ButtonProps>`
 	border: 0;
-	border-radius: 3em;
+	border-radius: ${spacing.borderRadius.small}px;
 	cursor: pointer;
 	display: inline-block;
 	overflow: hidden;
@@ -87,7 +87,7 @@ const StyledButton = styled.button<ButtonProps>`
         props.primary &&
         `
             background: ${color.primary};
-            color: ${color.darkest};
+            color: ${color.lightest};
             ${!props.isLoading &&
                 `
                 &:hover {

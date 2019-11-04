@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled/macro';
-import { breakpoint } from '../../../shared/styles';
+import { breakpoint, spacing } from '../../../shared/styles';
 import { animated } from 'react-spring';
 
 type Props = { fullWidth?: boolean; showMenu?: boolean };
@@ -22,6 +22,7 @@ export const NavBarContent: React.FC<Props> = styled(animated.div)`
         width: 100%;
 
         @media (max-width: ${breakpoint * 2}px) {
+            margin: ${spacing.padding.medium}px 0;
             padding-bottom: 2em;
         }
     `}

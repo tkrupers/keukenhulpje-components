@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled from '@emotion/styled/macro';
 import { useSpring, animated, config } from 'react-spring';
-import { color, typography, breakpoint } from '../../shared/styles';
+import { color, typography, breakpoint, spacing } from '../../shared/styles';
 import { Icon } from '../icon/icon';
 import { NavLink } from './elements/navlink';
 import { NavBarToggle } from './elements/navbar-toggle';
@@ -20,16 +20,17 @@ type Props = {
 };
 
 const StyledNavbar = styled(animated.nav)`
-    display: inline-flex;
+    display: flex;
     position: relative;
-    height: 80px;
-    padding-left: 1em;
-    padding-right: 1em;
+    flex-wrap: wrap;
+    height: 70px;
+    padding-left: ${spacing.padding.large}px;
+    padding-right: ${spacing.padding.large}px;
     border-top: 1px solid ${color.medium};
     border-bottom: 1px solid ${color.medium};
     border-radius: 0;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     background: white;
     box-sizing: border-box;
     font-family: ${typography.type.heading};
@@ -59,8 +60,6 @@ const StyledNavbar = styled(animated.nav)`
         @media (max-width: ${breakpoint * 2}px) {
             padding: 0;
             flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
         }
     `}
 
@@ -76,6 +75,11 @@ const StyledNavbar = styled(animated.nav)`
     `}
 `;
 
+const NavBarBlock = styled.div`
+    display: flex;
+    height: 70px;
+`;
+
 export const NavBar: React.FC<Props> = ({ children, brand, fullWidth, primary, secondary, ...rest }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -88,10 +92,14 @@ export const NavBar: React.FC<Props> = ({ children, brand, fullWidth, primary, s
     const isMobile = windowWidth <= breakpoint * 2;
 
     const contentAnimation = useSpring({
-        from: { transform: isMobile ? 'translate3d(-100%,0,0)' : 'translate3d(0,20px,0)', height: 0, opacity: 0 },
+        from: {
+            transform: isMobile ? 'translate3d(-100%,0,0)' : 'translate3d(0,20px,0)',
+            height: 0,
+            opacity: 0,
+            display: 'flex',
+            width: '100%',
+        },
         transform: isMobile ? (showMenu ? 'translate3d(0,0,0)' : 'translate3d(-100%,0,0)') : 'translate3d(0,0,0)',
-        marginTop: isMobile ? '80px' : 0,
-        width: '100%',
         opacity: isMobile ? (showMenu ? 1 : 0) : 1,
         height: isMobile ? (showMenu ? 'auto' : 0) : 'auto',
         delay: isMobile ? 0 : 600,
@@ -129,12 +137,14 @@ export const NavBar: React.FC<Props> = ({ children, brand, fullWidth, primary, s
             {...rest}
         >
             <NavBarContainer>
-                {fullWidth && (
-                    <NavBarToggle onClick={toggleNavBar}>
-                        <Icon icon="menu" />
-                    </NavBarToggle>
-                )}
-                {brand && <NavBarBrand>{brand}</NavBarBrand>}
+                <NavBarBlock>
+                    {fullWidth && (
+                        <NavBarToggle onClick={toggleNavBar}>
+                            <Icon icon="menu" />
+                        </NavBarToggle>
+                    )}
+                    {brand && <NavBarBrand>{brand}</NavBarBrand>}
+                </NavBarBlock>
                 {fullWidth ? (
                     <animated.div style={contentAnimation}>
                         <NavBarContent style={heightAnimation} showMenu={showMenu} fullWidth={fullWidth}>
