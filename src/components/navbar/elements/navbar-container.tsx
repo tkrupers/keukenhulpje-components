@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled/macro';
 import { breakpoint } from '../../../shared/styles';
 
+
 export const NavBarContainer = styled.div`
     max-width: 1440px;
     width: 100%;

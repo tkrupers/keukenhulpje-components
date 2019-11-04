@@ -74,6 +74,7 @@ const ButtonStyled = styled(Button)`
         margin-right: 1em;
     }
 
+
     @media (max-width: ${breakpoint * 2}px) {
         margin-bottom: 8px;
     }

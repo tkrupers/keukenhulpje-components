@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled/macro';
+
 import { breakpoint, spacing } from '../../../shared/styles';
 import { animated } from 'react-spring';
 
 type Props = { fullWidth?: boolean; showMenu?: boolean };
 
 export const NavBarContent: React.FC<Props> = styled(animated.div)`
+
     display: flex;
     align-items: center;
     background: inherit;
